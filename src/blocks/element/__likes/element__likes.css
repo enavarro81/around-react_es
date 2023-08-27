@@ -1,0 +1,9 @@
+.element__likes{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 22px;
+  position: absolute;
+  bottom: 9px;
+  right: 18px;
+}

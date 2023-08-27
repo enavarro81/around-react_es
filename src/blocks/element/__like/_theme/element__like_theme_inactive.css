@@ -1,0 +1,8 @@
+.element__like_theme_inactive {
+  background-image: url(../../../../images/elements/like_inactive.png);
+}
+
+.element__like_theme_inactive:hover {
+  background-image: url(../../../../images/elements/like_hover.png);
+  transition: background-image 1s ease;
+}

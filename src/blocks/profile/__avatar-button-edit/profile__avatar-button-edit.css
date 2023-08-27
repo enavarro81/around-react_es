@@ -1,0 +1,23 @@
+.profile__avatar-button-edit{
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  min-height: 26px;
+  background-image: url(../../../images/profile/profile_edit_button.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.profile__avatar-button-edit:hover{
+  visibility: visible;
+}
+
+body:has(.profile__avatar-button-edit:hover) .profile__avatar-image {
+  opacity: 0.6;
+}

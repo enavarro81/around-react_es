@@ -1,0 +1,13 @@
+.popup__image-caption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  padding-top: 10px;
+  align-self: flex-start;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__image-caption {
+    max-width: 240px;
+  }
+}

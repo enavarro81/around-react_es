@@ -1,0 +1,9 @@
+.popup__input_1 {
+  padding-top: 54px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__input_1 {
+    padding-top: 76px;
+  }
+}

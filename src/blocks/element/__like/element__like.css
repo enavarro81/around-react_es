@@ -1,0 +1,9 @@
+.element__like {
+  height: 19px;
+  background-position: center;
+  background-size: cover;
+}
+
+.element__like:hover {
+  cursor: pointer;
+}

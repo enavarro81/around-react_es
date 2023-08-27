@@ -1,0 +1,10 @@
+.element__image {
+  width: 282px;
+  height: 282px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #c4c4c4;
+  cursor: pointer;
+  object-fit:cover;
+}

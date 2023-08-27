@@ -1,0 +1,20 @@
+.profile__avatar-image{
+  background-size: contain;
+  background-color: #c4c4c4;
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  min-height: 120px;
+  border-radius: 50%;
+}
+
+.profile__avatar-image:hover{
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 1s ease;
+}
+
+body:has(.profile__avatar-image:hover) .profile__avatar-button-edit {
+  visibility: visible;
+}
+
