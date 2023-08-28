@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/around-react_es/static/css/main.569857c6.css",
-    "main.js": "/around-react_es/static/js/main.d3dc4665.js",
+    "main.js": "/around-react_es/static/js/main.90e4fa20.js",
     "static/js/787.33e33395.chunk.js": "/around-react_es/static/js/787.33e33395.chunk.js",
     "static/media/Inter.var.woff2?v=3.19": "/around-react_es/static/media/Inter.var.c2fe3cb2b7c746f7966a.woff2",
     "static/media/valle_yosemite.jpg": "/around-react_es/static/media/valle_yosemite.ec64d867a142cf3f8f57.jpg",
@@ -24,14 +24,13 @@
     "static/media/monte_rushmore.jpg": "/around-react_es/static/media/monte_rushmore.6aeedc34d1b7eaf7cae8.jpg",
     "static/media/niagara_falls.jpg": "/around-react_es/static/media/niagara_falls.d3f15a4beb683d8931f2.jpg",
     "static/media/montanas_calvas.png": "/around-react_es/static/media/montanas_calvas.eeae7d71a5c72e4cc0b5.png",
-    "static/media/logo.svg": "/around-react_es/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/around-react_es/index.html",
     "main.569857c6.css.map": "/around-react_es/static/css/main.569857c6.css.map",
-    "main.d3dc4665.js.map": "/around-react_es/static/js/main.d3dc4665.js.map",
+    "main.90e4fa20.js.map": "/around-react_es/static/js/main.90e4fa20.js.map",
     "787.33e33395.chunk.js.map": "/around-react_es/static/js/787.33e33395.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.569857c6.css",
-    "static/js/main.d3dc4665.js"
+    "static/js/main.90e4fa20.js"
   ]
 }
