@@ -1,54 +1,39 @@
-import logo from "./logo.svg";
-import Header from "./components/Header.js";
-import Main from "./components/Main.js";
-import Footer from "./components/Footer";
-import PopupWithForm from "./components/PopupWithForm";
-import ImagePopup from "./components/ImagePopup";
+import Header from "./Header.js";
+import Main from "./Main.js";
+import Footer from "./Footer.js";
+import PopupWithForm from "./PopupWithForm.js";
+import ImagePopup from "./ImagePopup.js";
 import React from "react";
 
 function App() {
-  const [isEditProfilePopupOpen, setProfile] = React.useState(false);
-  const [isAddPlacePopupOpen, setPlace] = React.useState(false);
-  const [isEditAvatarPopupOpen, setAvatar] = React.useState(false);
-  const [selectedCard, setCard] = React.useState("");
-
-  function setEditProfile() {
-    setProfile(true);
-  }
-
-  function setEditPlace() {
-    setPlace(true);
-  }
-
-  function setEditAvatar() {
-    setAvatar(true);
-  }
-
-  function setSelectedCard(card) {
-    setCard(card);
-  }
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+  const [selectedCard, isSelectedCard] = React.useState(null);
 
   function handleEditAvatarClick() {
-    setEditAvatar();
+    setIsEditAvatarPopupOpen(true);
   }
 
   function handleEditProfileClick() {
-    setEditProfile();
+    setIsEditProfilePopupOpen(true);
   }
 
   function handleAddPlaceClick() {
-    setEditPlace();
+    setIsAddPlacePopupOpen(true);
   }
 
   function handleCardClick(card) {
-    setSelectedCard(card);
+    isSelectedCard(card);
   }
 
   function closeAllPopups() {
-    setProfile(false);
-    setPlace(false);
-    setAvatar(false);
-    setCard("");
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    isSelectedCard(null);
   }
 
   return (
@@ -58,7 +43,7 @@ function App() {
           isEditProfilePopupOpen ||
           isAddPlacePopupOpen ||
           isEditAvatarPopupOpen ||
-          selectedCard != ""
+          selectedCard !== null
             ? "popup_theme_opened"
             : ""
         }`}

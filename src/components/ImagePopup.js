@@ -4,7 +4,7 @@ function ImagePopup(props) {
   return (
     <div
       className={`popup__image ${
-        props.imagePopup == ""
+        props.imagePopup === null
           ? "popup__image_theme_no-display"
           : "popup__image_theme_visible"
       }`}
@@ -17,11 +17,11 @@ function ImagePopup(props) {
       </div>
       <img
         className="popup__image-frame"
-        src={props.imagePopup == "" ? "" : props.imagePopup.link}
-        alt={props.imagePopup == "" ? "" : props.imagePopup.name}
+        src={props.imagePopup === null ? "" : props.imagePopup.link}
+        alt={props.imagePopup === null ? "" : props.imagePopup.name}
       />
       <p className="popup__image-caption">
-        {props.imagePopup == "" ? "" : props.imagePopup.name}
+        {props.imagePopup === null ? "" : props.imagePopup.name}
       </p>
     </div>
   );

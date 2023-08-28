@@ -6,11 +6,12 @@ function Card(props) {
   }
 
   return (
-    <li className="element" onClick={handleClick}>
+    <li className="element">
       <img
         className="element__image"
         src={props.card.link}
         alt={props.card.name}
+        onClick={handleClick}
       />
       <div className="element__trash"></div>
       <div className="element__descripcion">
