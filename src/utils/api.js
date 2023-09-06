@@ -17,6 +17,36 @@ class Api {
     }
     return Promise.reject(`Error: ${res.status}`);
   }
+
+  async changeLikeCardStatus(idCard, isLiked) {
+    const res = await fetch(`${this._baseUrl}/cards/likes/${idCard}`, {
+      method: `${isLiked ? "PUT" : "DELETE"}`,
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`changeLikeCardStatus Error: ${res.status}`);
+  }
+
+  async deleteCard(idCard) {
+    const res = await fetch(`${this._baseUrl}/cards/${idCard}`, {
+      method: "DELETE",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`deleteCard Error: ${res.status}`);
+  }
 }
 
 export const api = new Api({

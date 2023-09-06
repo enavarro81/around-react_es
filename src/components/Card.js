@@ -18,6 +18,14 @@ function Card(props) {
     props.onCardClick(props.card);
   }
 
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <li className="element">
       <img
@@ -30,11 +38,19 @@ function Card(props) {
         className={`element__trash ${
           isOwn ? "" : "element__trash_theme_invisible"
         }`}
+        onClick={handleDeleteClick}
       ></div>
       <div className="element__descripcion">
         <p className="element__title">{props.card.name}</p>
         <div className="element__likes">
-          <div className="element__like element__like_theme_inactive"></div>
+          <div
+            className={`element__like ${
+              isLiked
+                ? "element__like_theme_active"
+                : "element__like_theme_inactive"
+            }`}
+            onClick={handleLikeClick}
+          ></div>
           <div className="element__total-likes">{props.card.likes.length}</div>
         </div>
       </div>
