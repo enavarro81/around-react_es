@@ -1,25 +1,15 @@
 import React from "react";
 import { api } from "../utils/api.js";
 import Card from "../components/Card.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function Main(props) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescripction] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const currentUser = React.useContext(CurrentUserContext);
   const [cards, setCards] = React.useState([]);
 
-  React.useEffect(() => {
-    api
-      .getInformation("/users/me")
-      .then((resp) => {
-        setUserName(resp.name);
-        setUserDescripction(resp.about);
-        setUserAvatar(resp.avatar);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  //console.log(currentUser.name);
 
+  React.useEffect(() => {
     api
       .getInformation("/cards")
       .then((resp) => {
@@ -39,7 +29,7 @@ function Main(props) {
               className="profile__avatar-image"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
               alt=""
-              style={{ backgroundImage: `url(${userAvatar})` }}
+              style={{ backgroundImage: `url(${currentUser.avatar})` }}
             />
             <div
               className="profile__avatar-button-edit"
@@ -48,13 +38,13 @@ function Main(props) {
           </div>
           <div className="profile__info">
             <div className="profile__title">
-              <h1 className="profile__name">{userName}</h1>
+              <h1 className="profile__name">{currentUser.name}</h1>
               <button
                 className="profile__button-edit"
                 onClick={props.onEditProfileClick}
               ></button>
             </div>
-            <p className="profile__subtitle">{userDescription}</p>
+            <p className="profile__subtitle">{currentUser.about}</p>
           </div>
         </div>
         <div className="profile__button-content">

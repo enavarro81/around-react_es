@@ -1,6 +1,19 @@
 import React from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function Card(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  // Verificando si el usuario actual es el propietario de la tarjeta actual
+  const isOwn = props.card.owner._id === currentUser._id;
+  // Verifica si el usuario actual le dio "like" a la tarjeta
+  const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
+
+  /*console.log(currentUser);
+  console.log(props);
+  console.log(isOwn);
+  console.log(isLiked);*/
+
   function handleClick() {
     props.onCardClick(props.card);
   }
@@ -13,7 +26,11 @@ function Card(props) {
         alt={props.card.name}
         onClick={handleClick}
       />
-      <div className="element__trash"></div>
+      <div
+        className={`element__trash ${
+          isOwn ? "" : "element__trash_theme_invisible"
+        }`}
+      ></div>
       <div className="element__descripcion">
         <p className="element__title">{props.card.name}</p>
         <div className="element__likes">
