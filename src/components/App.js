@@ -3,6 +3,8 @@ import Main from "./Main.js";
 import Footer from "./Footer.js";
 import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
+import EditProfilePopup from "./EditProfilePopup.js";
+import EditAvatarPopup from "./EditAvatarPopup.js";
 import React from "react";
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
@@ -51,6 +53,34 @@ function App() {
     isSelectedCard(null);
   }
 
+  function handleUpdateUser({ name, about }) {
+    //console.log(name + " " + about);
+
+    api
+      .setUserInfo({ userName: name, userJob: about })
+      .then((resp) => {
+        setCurrentUser(resp);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleUpdateAvatar({ avatar }) {
+    //console.log("OJO " + avatar);
+    api
+      .setUserAvatar(avatar)
+      .then((resp) => {
+        //console.log(resp);
+        setCurrentUser(resp);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div
@@ -63,49 +93,16 @@ function App() {
             : ""
         }`}
       >
-        <PopupWithForm
-          onClose={closeAllPopups}
-          title="Actualizar foto de perfil"
-          name="actualizar-foto-perfil"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
-        >
-          <input
-            className="popup__input popup__input_1"
-            id="input-url-avatar"
-            name="input-url-avatar"
-            placeholder="Enlace a la imagen"
-            type="url"
-            required
-          ></input>
-          <span className="popup__form-error input-1-error"></span>
-        </PopupWithForm>
-        <PopupWithForm
           onClose={closeAllPopups}
-          title="Editar perfil"
-          name="editar-perfil"
+          onUpdateAvatar={handleUpdateAvatar}
+        />
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
-        >
-          <input
-            className="popup__input popup__input_1"
-            id="input-profile-name"
-            name="input-profile-name"
-            placeholder="Nombre"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span className="popup__form-error input-1-error"></span>
-          <input
-            className="popup__input popup__input_2"
-            id="input-profile-about"
-            name="input-profile-about"
-            placeholder="Acerca de mi"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span className="popup__form-error input-2-error"></span>
-        </PopupWithForm>
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
+        />
         <PopupWithForm
           onClose={closeAllPopups}
           title="Nuevo lugar"

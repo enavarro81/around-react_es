@@ -47,6 +47,43 @@ class Api {
     }
     return Promise.reject(`deleteCard Error: ${res.status}`);
   }
+
+  async setUserInfo({ userName, userJob }) {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: userName,
+        about: userJob,
+      }),
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`setUserInfo Error: ${res.status}`);
+  }
+
+  async setUserAvatar(userAvatar) {
+    const res = await fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        avatar: userAvatar,
+      }),
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`setUserAvatar Error: ${res.status}`);
+  }
 }
 
 export const api = new Api({
