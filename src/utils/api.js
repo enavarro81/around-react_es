@@ -84,6 +84,25 @@ class Api {
     }
     return Promise.reject(`setUserAvatar Error: ${res.status}`);
   }
+
+  async postCard({ name, link }) {
+    const res = await fetch(`${this._baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        link: link,
+      }),
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`postCard Error: ${res.status}`);
+  }
 }
 
 export const api = new Api({

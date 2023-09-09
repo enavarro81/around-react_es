@@ -5,9 +5,11 @@ import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from "./ImagePopup.js";
 import EditProfilePopup from "./EditProfilePopup.js";
 import EditAvatarPopup from "./EditAvatarPopup.js";
+import AddPlacePopup from "./AddPlacePopup.js";
 import React from "react";
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+//import Card from "../components/Card.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -19,11 +21,24 @@ function App() {
 
   const [currentUser, setCurrentUser] = React.useState("");
 
+  const [cards, setCards] = React.useState([]);
+
   React.useEffect(() => {
     api
       .getInformation("/users/me")
       .then((resp) => {
         setCurrentUser(resp);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    api
+      .getInformation("/cards")
+      .then((resp) => {
+        setCards(resp);
       })
       .catch((err) => {
         console.log(err);
@@ -81,6 +96,40 @@ function App() {
       });
   }
 
+  function handleSubmit({ name, link }) {
+    //console.log(`Los valores son ${name} ${link}`);
+
+    api
+      .postCard({ name, link })
+      .then((resp) => {
+        //console.log(resp);
+        setCards([resp, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleCardLike(card) {
+    // Verifica una vez más si a esta tarjeta ya le han dado like
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    //console.log(card._id + " " + isLiked);
+
+    // Envía una petición a la API y obtén los datos actualizados de la tarjeta
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
+  function handleCardDelete(card) {
+    //console.log(card._id);
+
+    api.deleteCard(card._id).then((newCard) => {
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div
@@ -103,32 +152,13 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <PopupWithForm
-          onClose={closeAllPopups}
-          title="Nuevo lugar"
-          name="nuevo-lugar"
+
+        <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
-        >
-          <input
-            className="popup__input popup__input_1"
-            id="input-place-title"
-            name="input-place-title"
-            placeholder="Título"
-            minLength="2"
-            maxLength="30"
-            required
-          ></input>
-          <span className="popup__form-error input-1-error"></span>
-          <input
-            className="popup__input popup__input_2"
-            id="input-place-image"
-            name="input-place-image"
-            placeholder="Enlace a la imagen"
-            type="url"
-            required
-          ></input>
-          <span className="popup__form-error input-2-error"></span>
-        </PopupWithForm>
+          onClose={closeAllPopups}
+          onAddPlaceSubmit={handleSubmit}
+        />
+
         <PopupWithForm
           onClose={closeAllPopups}
           title="¿Estás seguro?"
@@ -143,6 +173,9 @@ function App() {
           onEditProfileClick={handleEditProfileClick}
           onAddPlaceClick={handleAddPlaceClick}
           onCardClick={handleCardClick}
+          onCardLike={handleCardLike}
+          onCardDelete={handleCardDelete}
+          cards={cards}
         />
         <Footer />
       </div>
