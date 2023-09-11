@@ -16,9 +16,9 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
-  const [selectedCard, isSelectedCard] = React.useState(null);
+  const [selectedCard, setSelectedCard] = React.useState(null);
 
-  const [currentUser, setCurrentUser] = React.useState("");
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const [cards, setCards] = React.useState([]);
 
@@ -57,19 +57,17 @@ function App() {
   }
 
   function handleCardClick(card) {
-    isSelectedCard(card);
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
-    isSelectedCard(null);
+    setSelectedCard(null);
   }
 
   function handleUpdateUser({ name, about }) {
-    //console.log(name + " " + about);
-
     api
       .setUserInfo({ userName: name, userJob: about })
       .then((resp) => {

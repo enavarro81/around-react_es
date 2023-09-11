@@ -14,7 +14,9 @@ function Main(props) {
               className="profile__avatar-image"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
               alt=""
-              style={{ backgroundImage: `url(${currentUser.avatar})` }}
+              style={{
+                backgroundImage: `url(${currentUser.avatar})`,
+              }}
             />
             <div
               className="profile__avatar-button-edit"
@@ -23,13 +25,13 @@ function Main(props) {
           </div>
           <div className="profile__info">
             <div className="profile__title">
-              <h1 className="profile__name">{currentUser.name}</h1>
+              <h1 className="profile__name">{currentUser.name || ""}</h1>
               <button
                 className="profile__button-edit"
                 onClick={props.onEditProfileClick}
               ></button>
             </div>
-            <p className="profile__subtitle">{currentUser.about}</p>
+            <p className="profile__subtitle">{currentUser.about || ""}</p>
           </div>
         </div>
         <div className="profile__button-content">
