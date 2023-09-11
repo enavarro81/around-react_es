@@ -4,12 +4,10 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function EditAvatarPopup(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  //console.log(currentUser);
   const avatarRef = React.useRef();
 
   function handleSubmit(e) {
     e.preventDefault();
-    //console.log(avatarRef.current.value);
     props.onUpdateAvatar({
       avatar: avatarRef.current.value,
     });

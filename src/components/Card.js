@@ -9,11 +9,6 @@ function Card(props) {
   // Verifica si el usuario actual le dio "like" a la tarjeta
   const isLiked = props.card.likes.some((i) => i._id === currentUser._id);
 
-  /*console.log(currentUser);
-  console.log(props);
-  console.log(isOwn);
-  console.log(isLiked);*/
-
   function handleClick() {
     props.onCardClick(props.card);
   }

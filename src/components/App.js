@@ -9,7 +9,6 @@ import AddPlacePopup from "./AddPlacePopup.js";
 import React from "react";
 import { api } from "../utils/api.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
-//import Card from "../components/Card.js";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -83,11 +82,9 @@ function App() {
   }
 
   function handleUpdateAvatar({ avatar }) {
-    //console.log("OJO " + avatar);
     api
       .setUserAvatar(avatar)
       .then((resp) => {
-        //console.log(resp);
         setCurrentUser(resp);
         closeAllPopups();
       })
@@ -97,12 +94,9 @@ function App() {
   }
 
   function handleSubmit({ name, link }) {
-    //console.log(`Los valores son ${name} ${link}`);
-
     api
       .postCard({ name, link })
       .then((resp) => {
-        //console.log(resp);
         setCards([resp, ...cards]);
         closeAllPopups();
       })
@@ -114,7 +108,6 @@ function App() {
   function handleCardLike(card) {
     // Verifica una vez más si a esta tarjeta ya le han dado like
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    //console.log(card._id + " " + isLiked);
 
     // Envía una petición a la API y obtén los datos actualizados de la tarjeta
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
@@ -123,8 +116,6 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    //console.log(card._id);
-
     api.deleteCard(card._id).then((newCard) => {
       setCards((state) => state.filter((c) => c._id !== card._id));
     });

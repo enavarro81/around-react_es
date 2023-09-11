@@ -13,18 +13,15 @@ function EditProfilePopup(props) {
   }, [currentUser]);
 
   function handleNameChange(e) {
-    //console.log("nombre: " + e.target.value);
     setName(e.target.value);
   }
 
   function handleDescriptionChange(e) {
-    //console.log("descripction: " + e.target.value);
     setDescription(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    //console.log("entro al submit");
     props.onUpdateUser({
       name: name,
       about: description,
