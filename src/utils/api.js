@@ -110,3 +110,6 @@ export const api = new Api({
   groupId: `web_es_07`, // CHANGE IT WITH YOUR COHORT
   token: `250c5b2d-3e06-42c3-8a5a-70bc34e003f8`, // CHANGE IT WITH YOUR TOKEN
 });
+
+//esta linea la tuve que incluir porque sino me daba error las pruebas automaticas en la pagina de entregas
+export default Api;
